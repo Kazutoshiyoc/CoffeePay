@@ -13,31 +13,31 @@ const server = http.createServer(function(req, res) {
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // '/'にGETアクセスされた場合 index.htmlを表示
-	if (req.url === '/' && req.method === 'GET') {
+    if (req.url === '/' && req.method === 'GET') {
 
         // index.htmlを読み込む
         fs.readFile(docRoot + 'index.html', {
             encoding: 'utf8'
         }, function(err_404, index) {
 
-			if (err_404) {                                                  // index.htmlの読み込みに失敗した場合
+            if (err_404) {                                                  // index.htmlの読み込みに失敗した場合
                 fs.readFile(docRoot + '/error/404.html', {
-					encoding: 'utf8'
-				}, function(err_500, NotFound) {
-					if (err_500) [thisStatusCode, html] = [500, InternalServerError];   // 500エラー
-					else         [thisStatusCode, html] = [404, NotFound];              // 404エラー
+                    encoding: 'utf8'
+                }, function(err_500, NotFound) {
+                    if (err_500) [thisStatusCode, html] = [500, InternalServerError];   // 500エラー
+                    else         [thisStatusCode, html] = [404, NotFound];              // 404エラー
                 });
             } else [thisStatusCode, html] = [200, index];                   // 正常に動作した場合（200）
 
             // ページをリターン
             res.statusCode = thisStatusCode;
             res.setHeader('Content-Type', 'text/html');
-			res.end(html);
+            res.end(html);
         });
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     // '/updateInfo'にGETアクセスされた場合 admin/updateInfo.htmlを表示
-	} else if (req.url === '/updateInfo' && req.method === 'GET') {
+    } else if (req.url === '/updateInfo' && req.method === 'GET') {
 
         // admin/updateInfo.htmlを読み込む
         fs.readFile(docRoot + '/admin/updateInfo.html', {
@@ -73,7 +73,7 @@ const server = http.createServer(function(req, res) {
             // ページをリターン
             res.statusCode = thisStatusCode;
             res.setHeader('Content-Type', 'text/html');
-			res.end(html);
+            res.end(html);
         });
     }
 });

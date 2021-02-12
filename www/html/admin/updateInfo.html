@@ -4,90 +4,90 @@
         <meta lang="ja" charset="utf-8">
         <title>CoffeePay</title>
         <style id="default_css" type="text/css">
-			body {
-				background-color: #ffffff;
-			}
-			.app {
-				margin: 2em;
-				padding: 1em;
-				border: solid;
-				border-width: 1px;
-				border-radius: 3px;
-				box-shadow: 2px 2px 4px gray;
-			}
-			.app:hover {
-				background-color: #fcfcfc;
-				transition: .5s;
-			}
-			.appTitle {
-				font-size: 1.5em;
-				margin-bottom: 1em;
-			}
-			.appForm {
-				margin-top: 1.8em;
-			}
-			.appParameter {
-				margin: 0.8em;
-			}
-			.appParameterTitle {
-				width: 12em;
-				float: left;
-			}
-			
-			.postButton {
-				margin-top: 0.5em;
-				font-weight: bold;
-				padding: 0.25em 0.5em;
-				color: #000;
-				background-color: #dbdbdb;
-				transition: .4s;
-			}
-		</style>
+            body {
+                background-color: #ffffff;
+            }
+            .app {
+                margin: 2em;
+                padding: 1em;
+                border: solid;
+                border-width: 1px;
+                border-radius: 3px;
+                box-shadow: 2px 2px 4px gray;
+            }
+            .app:hover {
+                background-color: #fcfcfc;
+                transition: .5s;
+            }
+            .appTitle {
+                font-size: 1.5em;
+                margin-bottom: 1em;
+            }
+            .appForm {
+                margin-top: 1.8em;
+            }
+            .appParameter {
+                margin: 0.8em;
+            }
+            .appParameterTitle {
+                width: 12em;
+                float: left;
+            }
+            
+            .postButton {
+                margin-top: 0.5em;
+                font-weight: bold;
+                padding: 0.25em 0.5em;
+                color: #000;
+                background-color: #dbdbdb;
+                transition: .4s;
+            }
+        </style>
     </head>
     <body>
         <h1>CoffeePay</h1>
         <hr>
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
         <div class="app">
-			<div class="appTitle">Update Coffee price</div>
-			<div class="description">
-				コーヒーカプセルの価格を更新します。<br>
-			</div>
-			<hr>
-			<form class="appForm" method="POST" action="/coffeePrice">
-				<div class="appParameter">
-					<div class="appParameterTitle">Member price</div>
+            <div class="appTitle">Update Coffee price</div>
+            <div class="description">
+                コーヒーカプセルの価格を更新します。<br>
+            </div>
+            <hr>
+            <form class="appForm" method="POST" action="/coffeePrice">
+                <div class="appParameter">
+                    <div class="appParameterTitle">Member price</div>
                     <input type="number" name="coffeePrice-member">円
                 </div>
                 <div class="appParameter">
-					<div class="appParameterTitle">Non-Member price</div>
+                    <div class="appParameterTitle">Non-Member price</div>
                     <input type="number" name="coffeePrice-nonmember">円
-				</div>
-				<div class="appParameter">
-					<div class="appParameterTitle">Password</div>
-					<input type="password" name="password">
-				</div>
-				<input class="postButton" type="submit" value="Update">
-			</form>
+                </div>
+                <div class="appParameter">
+                    <div class="appParameterTitle">Password</div>
+                    <input type="password" name="password">
+                </div>
+                <input class="postButton" type="submit" value="Update">
+            </form>
         </div>
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
         <div class="app">
-			<div class="appTitle">Update PayPay QR Code</div>
-			<div class="description">
+            <div class="appTitle">Update PayPay QR Code</div>
+            <div class="description">
                 PayPay受け取りリンクを設定します。<br>
-			</div>
-			<hr>
-			<form class="appForm" method="POST" action="/paypayQR">
-				<div class="appParameter">
-					<div class="appParameterTitle">PayPay QR Code</div>
+            </div>
+            <hr>
+            <form class="appForm" method="POST" action="/paypayQR">
+                <div class="appParameter">
+                    <div class="appParameterTitle">PayPay QR Code</div>
                     <input type="text" name="paypay-qr">
                 </div>
-				<div class="appParameter">
-					<div class="appParameterTitle">Password</div>
-					<input type="password" name="password">
-				</div>
-				<input class="postButton" type="submit" value="Set">
-			</form>
+                <div class="appParameter">
+                    <div class="appParameterTitle">Password</div>
+                    <input type="password" name="password">
+                </div>
+                <input class="postButton" type="submit" value="Set">
+            </form>
         </div>
         <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
     </body>

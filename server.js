@@ -82,7 +82,7 @@ const server = http.createServer(function(req, res) {
                 var unixtime = now.getTime();
 
                 // 有効期限が切れていないときの処理
-                if (unixtime < PayPay_QR_Link_Expiry_Date-unixtime) {
+                if (unixtime < PayPay_QR_Link_Expiry_Date) {
 
                     html = ejs.render(redirect_html, {
                         infomation: '最新のPayPayリンクを取得しました。<br>自動的に画面が遷移しない場合は以下のリンクをクリックして下さい。',

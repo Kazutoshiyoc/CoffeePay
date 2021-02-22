@@ -5,6 +5,15 @@
 // ================================================================================
 'use strict';
 // -----------------------------------------
+//              環境変数の設定
+// -----------------------------------------
+require('dotenv').config();
+const ENVIRONMENT           = process.env.ENVIRONMENT;
+const CLIENT_SECRET_JSON    = process.env.CLIENT_SECRET_JSON;
+const TOKEN_DRIVE_FILE_JSON = process.env.TOKEN_DRIVE_FILE_JSON;
+
+
+// -----------------------------------------
 //              モジュールのロード
 // -----------------------------------------
 const { google } = require('googleapis');
@@ -34,14 +43,20 @@ const TOKEN_PATH         = path.resolve(API_INFO_DIR + '/drive/token.drive.file.
 //          OAuth2クライアントの設定
 // -----------------------------------------
 // クレデンシャル情報の取得
-const content     = fs.readFileSync(CLIENT_SECRET_PATH);
+var client_secret_data;
+if (ENVIRONMENT == 'Heroku') client_secret_data = CLIENT_SECRET_JSON;
+else                         client_secret_data = fs.readFileSync(CLIENT_SECRET_PATH);
+const content     = client_secret_data;
 const credentials = JSON.parse(content);
 const {client_secret, client_id, redirect_uris} = credentials.installed;
 
 // OAuth2クライアントの生成
+var token_data;
+if (ENVIRONMENT == 'Heroku') token_data = TOKEN_DRIVE_FILE_JSON;
+else                         token_data = fs.readFileSync(TOKEN_PATH);
+const token = token_data;
 const oauth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uris[0]);
-const token = fs.readFileSync(TOKEN_PATH);
-oauth2Client.credentials = JSON.parse(token);
+      oauth2Client.credentials = JSON.parse(token);
 
 
 // --------------------------------------------------------------------------------

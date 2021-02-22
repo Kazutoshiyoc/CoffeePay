@@ -1,0 +1,70 @@
+<DOCTYPE html>
+<html>
+    <head>
+        <meta lang="ja" charset="utf-8">
+        <title>CoffeePay</title>
+        <style id="default_css" type="text/css">
+            <%= css_setting %>
+        </style>
+    </head>
+    <body>
+        <h1>CoffeePay</h1>
+        <hr>
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <div class="app">
+            <div class="appTitle">CoffeePay Info</div>
+            <hr>
+            <div class="info">
+                受け取りリンク有効期限：　<%= expiry_date %><br>
+                <a href="<%= qr_link %>" target="_blank" rel="noopener noreferrer"><%= qr_link %></a>
+            </div>
+        </div>
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <div class="app">
+            <div class="appTitle">Update PayPay QR Code</div>
+            <div class="description">
+                PayPay受け取りリンクを設定します。<br>
+            </div>
+            <hr>
+            <form class="appForm" method="POST" action="/paypayQR">
+                <div class="appParameter">
+                    <div class="appParameterTitle">PayPay QR Code</div>
+                    <input type="text" name="paypay_qr">
+                </div>
+                <div class="appParameter">
+                    <div class="appParameterTitle">Application ID</div>
+                    <input type="text" name="app_id">
+                </div>
+                <div class="appParameter">
+                    <div class="appParameterTitle">Password</div>
+                    <input type="password" name="password">
+                </div>
+                <input class="postButton" type="submit" value="設定">
+            </form>
+        </div>
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+        <!--div class="app">
+            <div class="appTitle">Update Coffee price</div>
+            <div class="description">
+                コーヒーカプセルの価格を更新します。<br>
+            </div>
+            <hr>
+            <form class="appForm" method="POST" action="/coffeePrice">
+                <div class="appParameter">
+                    <div class="appParameterTitle">Member price</div>
+                    <input type="number" name="coffeePrice-member">円
+                </div>
+                <div class="appParameter">
+                    <div class="appParameterTitle">Non-Member price</div>
+                    <input type="number" name="coffeePrice-nonmember">円
+                </div>
+                <div class="appParameter">
+                    <div class="appParameterTitle">Password</div>
+                    <input type="password" name="password">
+                </div>
+                <input class="postButton" type="submit" value="更新">
+            </form>
+        </div-->
+        <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+    </body>
+</html>

@@ -1,0 +1,38 @@
+body {
+    background-color: #ffffff;
+}
+.app {
+    margin: 2em;
+    padding: 1em;
+    border: solid;
+    border-width: 1px;
+    border-radius: 3px;
+    box-shadow: 2px 2px 4px gray;
+}
+.app:hover {
+    background-color: #fcfcfc;
+    transition: .5s;
+}
+.appTitle {
+    font-size: 1.5em;
+    margin-bottom: 1em;
+}
+.appForm {
+    margin-top: 1.8em;
+}
+.appParameter {
+    margin: 0.8em;
+}
+.appParameterTitle {
+    width: 12em;
+    float: left;
+}
+
+.postButton {
+    margin-top: 0.5em;
+    font-weight: bold;
+    padding: 0.25em 0.5em;
+    color: #000;
+    background-color: #dbdbdb;
+    transition: .4s;
+}

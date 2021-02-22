@@ -21,8 +21,12 @@
   },
   "homepage": "https://github.com/Kazutoshiyoc/CoffeePay#readme",
   "dependencies": {
-    "require": "^2.4.20",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.6",
     "fs": "0.0.1-security",
-    "http": "0.0.1-security"
+    "googleapis": "^39.2.0",
+    "http": "0.0.1-security",
+    "querystring": "^0.2.1",
+    "require": "^2.4.20"
   }
 }

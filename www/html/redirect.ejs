@@ -1,6 +1,7 @@
 <DOCTYPE html>
 <html>
     <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <meta lang="ja" charset="utf-8">
         <title>CoffeePay</title>
     </head>
@@ -8,12 +9,9 @@
         <h1>CoffeePay</h1>
         <hr>
         <h3><%- infomation %></h3>
-        <a href="<%= redirect_url %>" target="_blank" rel="noopener noreferrer"><%= redirect_url %></a>
+        <a id="redirect" href="<%= redirect_url %>" <%= option %>><%= redirect_url %></a>
         <script type="text/javascript">
-			if (window.open ("<%= redirect_url %>", "_blank")) {
-            } else {
-                window.location.href = "<%= redirect_url %>";
-            }
+            $('#redirect')[0].click();
 		</script>
     </body>
 </html>

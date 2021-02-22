@@ -72,21 +72,22 @@ const server = http.createServer(function(req, res) {
 
         const getPayPayQRInfo = async () => {
             try {
-                var PayPay_QR_Link                 = await drive.getFile (PAYPAY_QR_ID);
-                    PayPay_QR_Link                 = decodeURIComponent(PayPay_QR_Link);
-                var PayPay_QR_Link_Expiry_Date     = await drive.getFile (PAYPAY_QR_EXPIRY_DATE_ID);
-                    PayPay_QR_Link_Expiry_Date     = parseInt(PayPay_QR_Link_Expiry_Date, 10);
+                var PayPay_QR_Link             = await drive.getFile (PAYPAY_QR_ID);
+                    PayPay_QR_Link             = decodeURIComponent(PayPay_QR_Link);
+                var PayPay_QR_Link_Expiry_Date = await drive.getFile (PAYPAY_QR_EXPIRY_DATE_ID);
+                    PayPay_QR_Link_Expiry_Date = parseInt(PayPay_QR_Link_Expiry_Date, 10);
 
                 // 現在時刻を取得（UNIXTIME）
                 var now = new Date();
                 var unixtime = now.getTime();
 
                 // 有効期限が切れていないときの処理
-                if (unixtime < PayPay_QR_Link_Expiry_Date) {
+                if (unixtime < PayPay_QR_Link_Expiry_Date-unixtime) {
 
                     html = ejs.render(redirect_html, {
                         infomation: '最新のPayPayリンクを取得しました。<br>自動的に画面が遷移しない場合は以下のリンクをクリックして下さい。',
-                        redirect_url: PayPay_QR_Link
+                        redirect_url: PayPay_QR_Link,
+                        option: 'target="_blank" rel="noopener noreferrer"'
                     });
 
                 // 有効期限が切れているときの処理
@@ -94,7 +95,8 @@ const server = http.createServer(function(req, res) {
 
                     html = ejs.render(redirect_html, {
                         infomation: 'PayPayリンクの有効期限が切れています。<br>お手数ですが、現金もしくは支払履歴・電話番号検索などからの決済をお願いします。',
-                        redirect_url: ''
+                        redirect_url: '#',
+                        option: ''
                     });
                 }
                 res.statusCode = 200;
@@ -187,7 +189,8 @@ const server = http.createServer(function(req, res) {
                         res.statusCode = 200;
                         html = ejs.render(redirect_html, {
                             infomation: '情報を更新しています...',
-                            redirect_url: '/admin'
+                            redirect_url: '/admin',
+                            option: ''
                         });
 
                     } catch (e) {

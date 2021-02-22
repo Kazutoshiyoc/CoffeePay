@@ -11,7 +11,8 @@
         <h3><%- infomation %></h3>
         <a id="redirect" href="<%= redirect_url %>" <%= option %>><%= redirect_url %></a>
         <script type="text/javascript">
-            $('#redirect')[0].click();
+            // https://paypay.ne.jp/developers-faq/open_payment_api/webviewpaypay-1/
+            window.open("<%= redirect_url %>", "_blank");
 		</script>
     </body>
 </html>

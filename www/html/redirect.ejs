@@ -8,9 +8,12 @@
         <h1>CoffeePay</h1>
         <hr>
         <h3><%- infomation %></h3>
-        <a href="<%= redirect_url %>"><%= redirect_url %></a>
+        <a href="<%= redirect_url %>" target="_blank" rel="noopener noreferrer"><%= redirect_url %></a>
         <script type="text/javascript">
-			window.location.href = "<%= redirect_url %>"
+			if (window.open ("<%= redirect_url %>", "_blank")) {
+            } else {
+                window.location.href = "<%= redirect_url %>";
+            }
 		</script>
     </body>
 </html>

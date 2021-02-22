@@ -13,6 +13,32 @@
         <script type="text/javascript">
             // https://paypay.ne.jp/developers-faq/open_payment_api/webviewpaypay-1/
             window.open("<%= redirect_url %>", "_blank");
+            
+            val codeWeb: WebView = WebView(this);
+            val settings = codeWeb.settings;
+            settings.domStorageEnabled = true;
+            settings.javaScriptEnabled = true;
+            codeWeb.loadUrl("https://coffeepay.herokuapp.com/");
+            codeWeb.webViewClient = object : WebViewClient() {
+                override fun shouldOverrideUrlLoading(
+                    view: WebView?,
+                    url: String?
+                ): Boolean {
+                    Log.i("shouldOverrideUrlLoading", "shouldOverrideUrlLoading: $url");
+                    val intent: Intent
+                    if (url != null) {
+                        if (url.contains("<%= redirect_url %>")) {
+                            // Current value of web cashier host:  
+                            // https://www.paypay.ne.jp/app/cashier
+                            intent = Intent(Intent.ACTION_VIEW);
+                            intent.data = Uri.parse(url);
+                            startActivity(intent);
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            }
 		</script>
     </body>
 </html>

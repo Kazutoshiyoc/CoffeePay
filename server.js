@@ -117,9 +117,8 @@ const server = http.createServer(function(req, res) {
     } else if (req.url === '/admin' && req.method === 'GET') {
 
         const setPayPayQRInfo = async () => {
-
-            // PayPay受け取りリンクと有効期限の取得
             try {
+                 // PayPay受け取りリンクと有効期限の取得
                 var PayPay_QR_Link                 = await drive.getFile (PAYPAY_QR_ID);
                     PayPay_QR_Link                 = decodeURIComponent(PayPay_QR_Link);
                 var PayPay_QR_Link_Expiry_Date     = await drive.getFile (PAYPAY_QR_EXPIRY_DATE_ID);
@@ -129,7 +128,7 @@ const server = http.createServer(function(req, res) {
                 res.statusCode = 200;
                 html = ejs.render(admin_html, {
                     css_setting: admin_css,
-                    expiry_date: PayPay_QR_Link_Expiry_Date_JST,
+                    paypay_expiry_date: PayPay_QR_Link_Expiry_Date_JST,
                     qr_link: PayPay_QR_Link
                 });
 

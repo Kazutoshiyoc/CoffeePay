@@ -12,6 +12,7 @@ const http        = require('http');
 const querystring = require('querystring');
 const path        = require('path');
 const ejs         = require('ejs');
+const moment      = require('moment-timezone');
 
 // 外部定義関数のロード
 const drive = require ('./function/googleapi/drive.js');
@@ -120,21 +121,17 @@ const server = http.createServer(function(req, res) {
         const setPayPayQRInfo = async () => {
             try {
                  // PayPay受け取りリンクと有効期限の取得
-                var PayPay_QR_Link             = await drive.getFile (PAYPAY_QR_ID);
-                    PayPay_QR_Link             = decodeURIComponent(PayPay_QR_Link);
-                var PayPay_QR_Link_Expiry_Date = await drive.getFile (PAYPAY_QR_EXPIRY_DATE_ID);
-                    PayPay_QR_Link_Expiry_Date = new Date(parseInt(PayPay_QR_Link_Expiry_Date, 10));
-
-                // タイムゾーンオフセットの計算
-                var LocalTimeZone_offset           = PayPay_QR_Link_Expiry_Date.getTimezoneOffset();
-                var JST_offset                     = -9*60;
-                var PayPay_QR_Link_Expiry_Date_JST = new Date(PayPay_QR_Link_Expiry_Date.getTime() + LocalTimeZone_offset + JST_offset);
+                var PayPay_QR_Link                 = await drive.getFile (PAYPAY_QR_ID);
+                    PayPay_QR_Link                 = decodeURIComponent(PayPay_QR_Link);
+                var PayPay_QR_Link_Expiry_Date     = await drive.getFile (PAYPAY_QR_EXPIRY_DATE_ID);
+                    PayPay_QR_Link_Expiry_Date     = new Date(parseInt(PayPay_QR_Link_Expiry_Date, 10));
+                var PayPay_QR_Link_Expiry_Date_JST = moment(PayPay_QR_Link_Expiry_Date.getTime()).tz('Asia/Tokyo');
 
                 // 変数の入力
                 res.statusCode = 200;
                 html = ejs.render(admin_html, {
                     css_setting: admin_css,
-                    paypay_expiry_date: PayPay_QR_Link_Expiry_Date_JST,
+                    paypay_expiry_date: PayPay_QR_Link_Expiry_Date_JST.format(),
                     qr_link: PayPay_QR_Link
                 });
 

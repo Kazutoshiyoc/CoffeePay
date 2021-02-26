@@ -26,6 +26,7 @@
     "fs": "0.0.1-security",
     "googleapis": "^39.2.0",
     "http": "0.0.1-security",
+    "moment-timezone": "^0.5.33",
     "querystring": "^0.2.1",
     "require": "^2.4.20"
   }

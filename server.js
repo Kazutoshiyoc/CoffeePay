@@ -72,6 +72,7 @@ const server = http.createServer(function(req, res) {
 
         const getPayPayQRInfo = async () => {
             try {
+                // PayPay受け取りリンクと有効期限の取得
                 var PayPay_QR_Link             = await drive.getFile (PAYPAY_QR_ID);
                     PayPay_QR_Link             = decodeURIComponent(PayPay_QR_Link);
                 var PayPay_QR_Link_Expiry_Date = await drive.getFile (PAYPAY_QR_EXPIRY_DATE_ID);
@@ -119,10 +120,15 @@ const server = http.createServer(function(req, res) {
         const setPayPayQRInfo = async () => {
             try {
                  // PayPay受け取りリンクと有効期限の取得
-                var PayPay_QR_Link                 = await drive.getFile (PAYPAY_QR_ID);
-                    PayPay_QR_Link                 = decodeURIComponent(PayPay_QR_Link);
-                var PayPay_QR_Link_Expiry_Date     = await drive.getFile (PAYPAY_QR_EXPIRY_DATE_ID);
-                var PayPay_QR_Link_Expiry_Date_JST = new Date(parseInt(PayPay_QR_Link_Expiry_Date, 10));
+                var PayPay_QR_Link             = await drive.getFile (PAYPAY_QR_ID);
+                    PayPay_QR_Link             = decodeURIComponent(PayPay_QR_Link);
+                var PayPay_QR_Link_Expiry_Date = await drive.getFile (PAYPAY_QR_EXPIRY_DATE_ID);
+                    PayPay_QR_Link_Expiry_Date = new Date(parseInt(PayPay_QR_Link_Expiry_Date, 10));
+
+                // タイムゾーンオフセットの計算
+                var LocalTimeZone_offset           = PayPay_QR_Link_Expiry_Date.getTimezoneOffset();
+                var JST_offset                     = -9*60;
+                var PayPay_QR_Link_Expiry_Date_JST = new Date(PayPay_QR_Link_Expiry_Date.getTime() + LocalTimeZone_offset + JST_offset);
 
                 // 変数の入力
                 res.statusCode = 200;

@@ -1,6 +1,6 @@
 process.on('unhandledRejection', console.dir);
 
-// 環境変数の設定
+// 環境変数の読み込み
 require('dotenv').config();
 const APP_ID                   = process.env.APP_ID;
 const PAYPAY_QR_ID             = process.env.PAYPAY_QR_ID;

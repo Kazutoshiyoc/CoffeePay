@@ -1,5 +1,6 @@
+<br>
 <p align="center">
-  <img src="https://github.com/Kazutoshiyoc/CoffeePay/blob/main/CoffeePay.svg" style="width:10rem;"/>
+  <img src="https://github.com/Kazutoshiyoc/CoffeePay/blob/main/CoffeePay.svg" style="width:15rem;"/>
   <br><br>
   CoffeePay provides automatically redirects to the PayPay payment link to get coffee.
 </p>
